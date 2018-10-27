@@ -4,6 +4,8 @@ const expect = require('chai').expect;
 
 chai.use(chaiHttp);
 const url= '0.0.0.0:8000';
+//const url= '18.221.246.131:8000';
+//const url= 'qrvey.aquehorajuega.co:8000';
 
 
 
@@ -14,6 +16,7 @@ describe('Unit test',()=>{
     let api_id = "";
     let task_id = "";
     let manual_task_id = "";
+    let project_id = "";
 
     it('Create a user', (done) => {
         chai.request(url)
@@ -117,7 +120,46 @@ describe('Unit test',()=>{
             });
     });
 
+    it('Create project', (done) => {
+        chai.request(url)
+            .post('/projects')
+            .send({api_id: api_id, name: "Test project"})
+            .end( function(err, res){
+                project_id = res.body._id;
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
 
+    it('Get project list', (done) => {
+        chai.request(url)
+            .get('/projects?api_id=' + api_id)
+            .end( function(err,res){
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
+
+
+    it('Update project', (done) => {
+        chai.request(url)
+            .put('/projects')
+            .send({api_id: api_id, _id: project_id, name: "New name"})
+            .end( function(err,res){
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
+
+    it('Delete project', (done) => {
+        chai.request(url)
+            .delete('/projects')
+            .send({api_id: api_id, _id: project_id})
+            .end( function(err,res){
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
 
     it('Delete user', (done) => {
         chai.request(url)

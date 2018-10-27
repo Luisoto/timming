@@ -101,7 +101,7 @@ router.put('/', function (req, res, next) {
 
     const baseSchema = Joi.object().keys({
         api_id: Joi.string(),
-        _id: Joi.string(),
+        _id: Joi.string().length(24),
         status: Joi.any().valid("Running","Paused", "Finished")
     });
 
@@ -199,7 +199,7 @@ router.put('/', function (req, res, next) {
 router.delete('/', function (req, res, next) {
     const baseSchema = Joi.object().keys({
         api_id: Joi.string(),
-        _id: Joi.string()
+        _id: Joi.string().length(24)
     });
 
     const data = req.body;

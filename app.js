@@ -11,6 +11,7 @@ let User = mongoose.model('_User');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const taskRouter = require('./routes/tasks');
+const projectRouter = require('./routes/project');
 
 const app = express();
 
@@ -24,8 +25,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//////------Function for authentication-----///////
 const auth_user = function(req, res, next) {
-    if (req.originalUrl === "/users" && req.method !== "DELETE"){
+
+    //Get api_id from query or body and find user
+    if (req.originalUrl === "/users" && req.method !== "DELETE"){ //Allow only login and user creation without authentication
         next();
     }
     else if (req.body.api_id || req.query.api_id) {
@@ -62,19 +66,18 @@ const auth_user = function(req, res, next) {
     else{
         res.status(401).send({
             error: true,
-            errorMessage: "No api_key provided",
+            errorMessage: "You must provide an api_id!",
         });
     }
 };
 app.use('*', auth_user);
 
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/tasks', taskRouter);
+app.use('/projects', projectRouter);
 
-app.listen(8000, function() {
-    console.log('listening on http://localhost:8000');
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
