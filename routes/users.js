@@ -19,7 +19,6 @@ router.get('/', function(req, res, next) {
       -H 'Cache-Control: no-cache' \
       -H 'Content-Type: application/json' \
     */
-
     //First check if there is a user with provided email
     User.findOne({
         email:req.query.email,
