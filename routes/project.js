@@ -3,6 +3,7 @@ let router = express.Router();
 const mongoose = require('mongoose');
 const Joi = require('joi');
 let Project = mongoose.model('Project');
+let Task = mongoose.model('Task');
 
 //Endpoint to list all project per user
 router.get('/', function(req, res, next) {
@@ -124,6 +125,72 @@ router.delete('/', function (req, res, next) {
         });
     }
     else{
+        res.status(400).json({
+            error: true,
+            errorMessage: validationResult.error.details[0].message
+        });
+    }
+});
+
+router.post('/add_task_to_project', function (req, res, next) {
+
+    const baseSchema = Joi.object().keys({
+        api_id: Joi.string(),
+        task_id: Joi.string().required().length(24),
+        project_id: Joi.string().required().length(24)
+    });
+
+    const data = req.body;
+    const validationResult = Joi.validate(data, baseSchema);
+
+    if (!validationResult.error) {
+
+        Project.findOne({
+            api_id: req.user.api_id,
+            _id: mongoose.Types.ObjectId(req.body.project_id)
+        }, function (err, project) {
+            if (err){
+                res.status(500).json({ error: true, message: err });
+            }
+            else{
+                if (project == null){
+                    res.status(404).json({ error: true, message: "Project not found"});
+                }
+                else {
+                    Task.findOne({
+                        api_id: req.user.api_id,
+                        _id: mongoose.Types.ObjectId(req.body.task_id)
+                    }).select('api_id').exec(function (err, task) {
+                        if (task == null){
+                            res.status(404).json({ error: true, message: "Task not found"});
+                        }
+                        else {
+                            //addToSet prevent duplicate task_id
+                            Project.findOneAndUpdate({
+                                api_id: req.user.api_id,
+                                _id: mongoose.Types.ObjectId(req.body.project_id)
+                            }, {
+                                $set:{
+                                  updatedAt: new Date()
+                                },
+                                $addToSet: {
+                                    tasks: task._id
+                                },
+                            },{new: true},function (err,  new_project) {
+                                if (err){
+                                    res.status(500).json({ error: true, message: err });
+                                }
+                                else{
+                                    res.status(200).json(new_project);
+                                }
+                            });
+                        }
+                    });
+                }
+            }
+        });
+    }
+    else {
         res.status(400).json({
             error: true,
             errorMessage: validationResult.error.details[0].message

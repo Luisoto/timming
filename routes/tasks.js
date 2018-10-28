@@ -95,7 +95,6 @@ router.post('/', function(req, res, next) {
         });
     }
 });
-
 //Modified a task (Resume, Stop or Finish)
 router.put('/', function (req, res, next) {
 
@@ -195,7 +194,6 @@ router.put('/', function (req, res, next) {
 
 });
 
-
 router.delete('/', function (req, res, next) {
     const baseSchema = Joi.object().keys({
         api_id: Joi.string(),
@@ -231,5 +229,6 @@ router.delete('/', function (req, res, next) {
         });
     }
 });
+
 
 module.exports = router;

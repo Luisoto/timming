@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e0143a8-b0cc-41b4-9e6b-ec6e8634bd37" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/routes/project.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/schemas/project_schema.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/www" beforeDir="false" afterPath="$PROJECT_DIR$/bin/www" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo_settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/mongo_settings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/lodash/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/lodash/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/project.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/project.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/tasks.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/tasks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/schemas/project_schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/schemas/project_schema.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/test.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -31,7 +30,7 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gitignore" value="1" />
-          <entry key="js" value="22" />
+          <entry key="js" value="24" />
           <entry key="json" value="3" />
           <entry key="www" value="1" />
         </counts>
@@ -39,14 +38,14 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JSON" value="3" />
-          <entry key="JavaScript" value="23" />
+          <entry key="JavaScript" value="25" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="5" />
-          <entry key="js" value="7896" />
+          <entry key="js" value="8577" />
           <entry key="json" value="1" />
           <entry key="www" value="4" />
         </counts>
@@ -54,7 +53,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JSON" value="1" />
-          <entry key="JavaScript" value="7900" />
+          <entry key="JavaScript" value="8581" />
           <entry key="PLAIN_TEXT" value="5" />
         </counts>
       </usages-collector>
@@ -79,9 +78,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/tasks.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1437">
-              <caret line="198" selection-start-line="198" selection-end-line="232" selection-end-column="3" />
+            <state relative-caret-position="146">
+              <caret line="52" column="29" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="29" />
               <folding>
+                <element signature="n#!!block;n#finish_task#0" />
+                <element signature="e#778#1059#0" />
                 <element signature="e#7130#8095#0" />
               </folding>
             </state>
@@ -92,7 +93,7 @@
         <entry file="file://$PROJECT_DIR$/schemas/user_schema.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
-              <caret line="6" column="39" lean-forward="true" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="39" />
+              <caret line="6" column="39" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -107,10 +108,25 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="232">
+              <caret line="78" column="25" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/project.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="93">
-              <caret line="80" column="34" selection-start-line="80" selection-start-column="34" selection-end-line="80" selection-end-column="34" />
+            <state relative-caret-position="415">
+              <caret line="168" column="53" selection-start-line="168" selection-start-column="53" selection-end-line="168" selection-end-column="53" />
+              <folding>
+                <element signature="e#214#495#0" />
+                <element signature="e#544#1117#0" />
+                <element signature="e#1496#2752#0" />
+                <element signature="e#2801#3776#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -118,8 +134,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/schemas/project_schema.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="165">
+              <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/schemas/task_schema.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="39" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -147,14 +172,15 @@
       <find>_status</find>
       <find>Stoped</find>
       <find>finish_task</find>
-      <find>.save</find>
       <find>listening</find>
       <find>listening on</find>
       <find>!=</find>
       <find>n</find>
       <find>mongoose.Types</find>
-      <find>_id</find>
       <find>update</find>
+      <find>_id</find>
+      <find>.update</find>
+      <find>.save</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -176,9 +202,9 @@
         <option value="$PROJECT_DIR$/bin/www" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/mongo_settings.js" />
-        <option value="$PROJECT_DIR$/routes/tasks.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/schemas/project_schema.js" />
+        <option value="$PROJECT_DIR$/routes/tasks.js" />
         <option value="$PROJECT_DIR$/routes/project.js" />
         <option value="$PROJECT_DIR$/test.js" />
       </list>
@@ -259,7 +285,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Mocha.Unit test.Create project">
+  <component name="RunManager" selected="Mocha.test.js">
     <configuration name="Unit test.Create project" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -293,8 +319,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Mocha.Unit test.Create project" />
         <item itemvalue="Mocha.test.js" />
+        <item itemvalue="Mocha.Unit test.Create project" />
       </list>
     </recent_temporary>
   </component>
@@ -308,32 +334,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1540600411557</updated>
-      <workItem from="1540600416018" duration="43735000" />
+      <workItem from="1540600416018" duration="47062000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="test_js - 2018.10.27 at 16h 20m 21s.xml">
-      <configuration name="test.js" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="test_js - 2018.10.27 at 16h 20m 38s.xml">
-      <configuration name="test.js" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="test_js - 2018.10.27 at 16h 20m 47s.xml">
-      <configuration name="test.js" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="test_js - 2018.10.27 at 16h 20m 53s.xml">
-      <configuration name="test.js" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="test_js - 2018.10.27 at 16h 20m 57s.xml">
-      <configuration name="test.js" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="test_js - 2018.10.27 at 17h 48m 48s.xml">
-      <configuration name="test.js" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="test_js - 2018.10.27 at 17h 49m 03s.xml">
-      <configuration name="test.js" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
     <history-entry file="test_js - 2018.10.27 at 17h 50m 07s.xml">
       <configuration name="test.js" configurationId="mocha-javascript-test-runner" />
     </history-entry>
@@ -343,9 +348,30 @@
     <history-entry file="Unit_test_Create_project - 2018.10.27 at 17h 50m 18s.xml">
       <configuration name="Unit test.Create project" configurationId="mocha-javascript-test-runner" />
     </history-entry>
+    <history-entry file="test_js - 2018.10.27 at 17h 50m 55s.xml">
+      <configuration name="test.js" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Unit_test_Create_project - 2018.10.27 at 17h 51m 14s.xml">
+      <configuration name="Unit test.Create project" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="test_js - 2018.10.27 at 17h 51m 42s.xml">
+      <configuration name="test.js" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="test_js - 2018.10.27 at 17h 51m 52s.xml">
+      <configuration name="test.js" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="test_js - 2018.10.27 at 17h 54m 00s.xml">
+      <configuration name="test.js" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="test_js - 2018.10.27 at 18h 54m 47s.xml">
+      <configuration name="test.js" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="test_js - 2018.10.27 at 19h 32m 27s.xml">
+      <configuration name="test.js" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43735000" />
+    <option name="totallyTimeSpent" value="47062000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="777" extended-state="6" />
@@ -353,16 +379,16 @@
     <layout>
       <window_info id="npm" side_tool="true" />
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2494043" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21763304" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" weight="0.5051095" />
+      <window_info anchor="bottom" id="Terminal" weight="0.43649635" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.53722626" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.4627737" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3970803" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.41459855" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -401,46 +427,10 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/schemas/task_schema.js</url>
-          <line>19</line>
+          <url>file://$PROJECT_DIR$/routes/project.js</url>
+          <line>179</line>
           <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="91" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/schemas/task_schema.js</url>
-          <line>25</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="92" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/schemas/task_schema.js</url>
-          <line>21</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="93" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/schemas/task_schema.js</url>
-          <line>28</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="94" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/routes/tasks.js</url>
-          <line>52</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="95" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/routes/tasks.js</url>
-          <line>57</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="96" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/test.js</url>
-          <line>127</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="105" />
+          <option name="timeStamp" value="116" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -498,17 +488,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/schemas/task_schema.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="31" lean-forward="true" selection-end-line="35" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/schemas/user_schema.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="6" column="39" lean-forward="true" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="39" />
+          <caret line="6" column="39" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -516,23 +499,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/tasks.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1437">
-          <caret line="198" selection-start-line="198" selection-end-line="232" selection-end-column="3" />
-          <folding>
-            <element signature="e#7130#8095#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -548,17 +514,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/schemas/task_schema.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="39" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/schemas/project_schema.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="165">
+          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="78" column="25" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/tasks.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="52" column="29" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="29" />
+          <folding>
+            <element signature="n#!!block;n#finish_task#0" />
+            <element signature="e#778#1059#0" />
+            <element signature="e#7130#8095#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/project.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="80" column="34" selection-start-line="80" selection-start-column="34" selection-end-line="80" selection-end-column="34" />
+        <state relative-caret-position="415">
+          <caret line="168" column="53" selection-start-line="168" selection-start-column="53" selection-end-line="168" selection-end-column="53" />
+          <folding>
+            <element signature="e#214#495#0" />
+            <element signature="e#544#1117#0" />
+            <element signature="e#1496#2752#0" />
+            <element signature="e#2801#3776#0" />
+          </folding>
         </state>
       </provider>
     </entry>
