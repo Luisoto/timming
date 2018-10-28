@@ -40,7 +40,7 @@ describe('Unit test',()=>{
 
     it('Login', (done) => {
         chai.request(url)
-            .get('/users?api_id=' + api_id +'&email=' + email + '&password=' + password)
+            .get('/users?email=' + email + '&password=' + password)
             .end( function(err,res){
                 expect(res).to.have.status(200);
                 done();

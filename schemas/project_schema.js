@@ -1,3 +1,7 @@
+/**
+ * Created by Luis Soto on 27/10/18.
+ */
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 

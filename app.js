@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const auth_user = function(req, res, next) {
 
     //Get api_id from query or body and find user
-    if (req.originalUrl === "/users" && req.method !== "DELETE"){ //Allow only login and user creation without authentication
+    if (req.baseUrl === "/users" && req.method !== "DELETE"){ //Allow only login and user creation without authentication
         next();
     }
     else if (req.body.api_id || req.query.api_id) {

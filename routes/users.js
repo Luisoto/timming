@@ -10,20 +10,26 @@ const Joi = require('joi');
 const mongoose = require('mongoose');
 let User = mongoose.model('_User');
 
-//Login
+//Function to Login
 router.get('/', function(req, res, next) {
+
+    /*
+    curl -X GET \
+      'http://qrvey.aquehorajuega.co:8000?email=luisoto92@gmail.com&password=qrvey_test_soto' \
+      -H 'Cache-Control: no-cache' \
+      -H 'Content-Type: application/json' \
+    */
+
+    //First check if there is a user with provided email
     User.findOne({
         email:req.query.email,
     }).exec(function (err, user) {
-        if (err) {
-            res.status(500).json({ error: true, message: err });
-        }
+        if (err) res.status(500).json({ error: true, message: err });
         else {
             if (user != null){
+                //If user exist, compare password with save password in db
                 user.verifyPassword(req.query.password, function(err, isMatch ) {
-                    if (err) {
-                        res.status(500).json({ error: true, message: "Cannot login now!" });
-                    }
+                    if (err) res.status(500).json({ error: true, message: "Cannot login now!" });
                     else if(isMatch === false){
                         res.status(401).json({
                             error:true,

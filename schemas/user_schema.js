@@ -1,6 +1,7 @@
 /**
- * Created by luisoto on 27/10/18.
+ * Created by Luis Soto on 27/10/18.
  */
+
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
@@ -26,6 +27,7 @@ UserSchema.pre('save', function(next) {
 });
 //Function to verify password when user try to login
 UserSchema.methods.verifyPassword = function(password, cb) {
+    console.log(bcrypt.hashSync(password, bcrypt.genSaltSync(8), null));
     bcrypt.compare(password, this.password, function(err, isMatch) {
         if (err) return cb(err);
         cb(null, isMatch);
