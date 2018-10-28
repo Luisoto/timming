@@ -2,20 +2,20 @@
  * Created by Luis Soto on 27/10/18.
  */
 
-
 let express = require('express');
 let router = express.Router();
-const Joi = require('joi');
-
-const mongoose = require('mongoose');
+let Joi = require('joi');
+let mongoose = require('mongoose');
 let User = mongoose.model('_User');
+let Task = mongoose.model('Task');
+let Project = mongoose.model('Project');
 
-//Function to Login
+//Endpoint to login to Login
 router.get('/', function(req, res, next) {
 
     /*
     curl -X GET \
-      'http://qrvey.aquehorajuega.co:8000?email=luisoto92@gmail.com&password=qrvey_test_soto' \
+      'http://qrvey.aquehorajuega.co:8000/users?email=luisoto92@gmail.com&password=qrvey_test_soto' \
       -H 'Cache-Control: no-cache' \
       -H 'Content-Type: application/json' \
     */
@@ -50,14 +50,13 @@ router.get('/', function(req, res, next) {
         }
     });
 });
-//Create
+//Endpoint to create user
 router.post('/', function(req, res, next) {
-
+    //Schema to validate req.body
     const baseSchema = Joi.object().keys({
         email: Joi.string().email().required(),
         password: Joi.string().required().min(8)
     });
-
     const data = req.body;
     const validationResult = Joi.validate(data, baseSchema);
 
@@ -66,19 +65,12 @@ router.post('/', function(req, res, next) {
             email:req.body.email,
             password: req.body.password
         });
-
         user_to_save.save(function save(err, user) {
             if (err) {
-                if (err.code = 11000){
-                    res.status(500).json({ error: true, message: "Email already registered!" });
-                }
-                else{
-                    res.status(500).json({ error: true, message: "Error creating user" });
-                }
-                console.log(err);
-            } else {
-                res.status(200).json({api_id : user.api_id});
+                if (err.code = 11000)res.status(500).json({ error: true, message: "Email already registered!" }); //Specific error for duplicate unique key
+                else res.status(500).json({ error: true, message: err });
             }
+            else res.status(200).json({api_id : user.api_id});
         });
     }
     else{
@@ -87,24 +79,26 @@ router.post('/', function(req, res, next) {
             errorMessage: validationResult.error.details[0].message
         });
     }
-
 });
-//Delete user and all task and projects by api_id
+//Endpoint to delete user and all user's task and user's projects by api_id
 router.delete('/', function(req, res, next) {
-
     User.deleteOne({
         api_id:req.user.api_id,
     }).exec(function (err, result) {
-        if (err) {
-            res.status(500).json({ error: true, message: err });
-        }
+        if (err) res.status(500).json({ error: true, message: err });
         else {
-            if (result.n === 0){
-                res.status(404).json({ error: true, message: "User not found"});
-            }
+            if (result.n === 0)res.status(404).json({ error: true, message: "User not found"});
             else {
-                //We should remove tasks and projects
-                res.status(200).json({message: "User deleted successfully"})
+                //We have to remove tasks and projects associated to this user
+                Project.deleteMany({
+                    api_id: req.user.api_id
+                }).exec(function (err, result) {
+                    Task.deleteMany({
+                        api_id: req.user.api_id
+                    }).exec(function (err, result) {
+                        res.status(200).json({message: "User deleted successfully"});
+                    });
+                });
             }
         }
     });

@@ -2,8 +2,6 @@
  * Created by Luis Soto on 27/10/18.
  */
 
-
-
 let express = require('express');
 let router = express.Router();
 let mongoose = require('mongoose');
@@ -31,9 +29,7 @@ router.get('/', function(req, res, next) {
             }
         }
     ]).exec(function (err, projects){
-        if (err) {
-            res.status(500).json({ error: true, message: err });
-        }
+        if (err) res.status(500).json({ error: true, message: err });
         else {
             _.forEach(projects, function (project) {
                 let duration = 0;
@@ -42,9 +38,7 @@ router.get('/', function(req, res, next) {
                         const started_or_last_resumed = task.last_resumed || task.createdAt;
                         duration += task.duration + (new Date() - started_or_last_resumed)/1000;
                     }
-                    else{
-                        duration += task.duration;
-                    }
+                    else duration += task.duration;
                 });
                 const hours = String(Math.floor(duration / 3600)).padStart(2, "0");
                 const minutes = String(Math.floor((duration % 3600) / 60)).padStart(2, "0");
@@ -76,11 +70,8 @@ router.post('/', function(req, res, next) {
         });
 
         project_to_save.save(function save(err, project) {
-            if (err) {
-                res.status(500).json({ error: true, message: err });
-            } else {
-                res.status(200).json(project);
-            }
+            if (err) res.status(500).json({ error: true, message: err });
+            else res.status(200).json(project);
         });
 
     }
@@ -113,16 +104,10 @@ router.put('/', function (req, res, next) {
                 updatedAt: new Date()
             }
         },{new: true}, function (err, project) {
-            if (err){
-                res.status(500).json({ error: true, message: err });
-            }
-            else{
-                if (project == null){
-                    res.status(404).json({ error: true, message: "Project not found"});
-                }
-                else {
-                    res.status(200).json(project);
-                }
+            if (err) res.status(500).json({ error: true, message: err });
+            else {
+                if (project == null) res.status(404).json({ error: true, message: "Project not found"});
+                else res.status(200).json(project);
             }
         })
     }
@@ -150,16 +135,10 @@ router.delete('/', function (req, res, next) {
             api_id: req.user.api_id,
             _id: mongoose.Types.ObjectId(req.body._id)
         }).exec(function (err, result) {
-            if (err) {
-                res.status(500).json({ error: true, message: err });
-            }
+            if (err) res.status(500).json({ error: true, message: err });
             else {
-                if (result.n === 0){
-                    res.status(404).json({ error: true, message: "Project not found"});
-                }
-                else {
-                    res.status(200).json({message: "Project deleted successfully"})
-                }
+                if (result.n === 0) res.status(404).json({ error: true, message: "Project not found"});
+                else res.status(200).json({message: "Project deleted successfully"})
             }
         });
     }
@@ -188,23 +167,17 @@ router.post('/add_task_to_project', function (req, res, next) {
             api_id: req.user.api_id,
             _id: mongoose.Types.ObjectId(req.body.project_id)
         }, function (err, project) {
-            if (err){
-                res.status(500).json({ error: true, message: err });
-            }
+            if (err) res.status(500).json({ error: true, message: err });
             else{
-                if (project == null){
-                    res.status(404).json({ error: true, message: "Project not found"});
-                }
+                if (project == null) res.status(404).json({ error: true, message: "Project not found"});
                 else {
                     Task.findOne({
                         api_id: req.user.api_id,
                         _id: mongoose.Types.ObjectId(req.body.task_id)
                     }).select('api_id').exec(function (err, task) {
-                        if (task == null){
-                            res.status(404).json({ error: true, message: "Task not found"});
-                        }
+                        if (task == null) res.status(404).json({ error: true, message: "Task not found"});
                         else {
-                            //addToSet prevent duplicate task_id
+                            //$addToSet prevent duplicate task_id in id array
                             Project.findOneAndUpdate({
                                 api_id: req.user.api_id,
                                 _id: mongoose.Types.ObjectId(req.body.project_id)
@@ -216,12 +189,8 @@ router.post('/add_task_to_project', function (req, res, next) {
                                     tasks: task._id
                                 },
                             },{new: true},function (err,  new_project) {
-                                if (err){
-                                    res.status(500).json({ error: true, message: err });
-                                }
-                                else{
-                                    res.status(200).json(new_project);
-                                }
+                                if (err) res.status(500).json({ error: true, message: err });
+                                else res.status(200).json(new_project);
                             });
                         }
                     });
