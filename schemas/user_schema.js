@@ -1,3 +1,7 @@
+/**
+ * Created by luisoto on 27/10/18.
+ */
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const uuidv1 = require('uuid/v1');
@@ -11,6 +15,7 @@ const UserSchema = new Schema({
     updatedAt: {type: Date, default: Date.now}
 });
 
+// This function encrypted password (Obviously is better when your password is a little more secure)
 UserSchema.pre('save', function(next) {
     const user = this;
     user.updatedAt = Date.now;
@@ -19,7 +24,7 @@ UserSchema.pre('save', function(next) {
     next();
 
 });
-
+//Function to verify password when user try to login
 UserSchema.methods.verifyPassword = function(password, cb) {
     bcrypt.compare(password, this.password, function(err, isMatch) {
         if (err) return cb(err);

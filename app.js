@@ -1,3 +1,7 @@
+/**
+ * Created by Luis Soto on 27/10/18.
+ */
+
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -25,7 +29,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//////------Function for authentication-----///////
+
+//Function for authentication  (not very safe but it's good for the test)
 const auth_user = function(req, res, next) {
 
     //Get api_id from query or body and find user
@@ -41,7 +46,7 @@ const auth_user = function(req, res, next) {
         else {
             api_id = req.body.api_id;
         }
-
+        //If api_id is send find user and put user's information in req.user to be accessible everywhere
         User.findOne({
             api_id: api_id,
         }).exec(function (err, user) {

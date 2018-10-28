@@ -18,14 +18,17 @@ TaskSchema.pre('save', function(next) {
     const task = this;
     console.log(task.isModified('status'));
     if (task.isModified('status') && task.status === "Paused" ) {
+        //If user paused a task save in object current duration (now- (created or last_resume)) and last_paused time
         const started_or_last_resumed = task.last_resumed || task.createdAt;
         task.last_paused = new Date();
         task.duration += (new Date() - started_or_last_resumed)/1000;
     }
     if (task.isModified('status') && task.status === "Running" ) {
+        //If task is resume save in object last_resume to be able to calculate total time when task is finished
         task.last_resumed = new Date();
     }
     if (task.isModified('status') && task.status === "Finished" ) {
+        //If task is finished save in object moment when task was finished
         task.finishedAt = new Date();
     }
     next();
