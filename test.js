@@ -47,23 +47,23 @@ describe('Unit test',()=>{
             });
     });
 
-    it('Create a manual task', (done) => {
-        chai.request(url)
-            .post('/tasks')
-            .send({api_id: api_id, duration: 1000, name: "prueba_qrvey"})
-            .end( function(err,res){
-                manual_task_id = res.body._id;
-                expect(res).to.have.status(200);
-                done();
-            });
-    });
-
     it('Create a task', (done) => {
         chai.request(url)
             .post('/tasks')
             .send({api_id: api_id, name: "prueba_qrvey"})
             .end( function(err,res){
                 task_id = res.body._id;
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
+
+    it('Create a manual task', (done) => {
+        chai.request(url)
+            .post('/tasks')
+            .send({api_id: api_id, duration: 1000, name: "prueba_qrvey"})
+            .end( function(err,res){
+                manual_task_id = res.body._id;
                 expect(res).to.have.status(200);
                 done();
             });

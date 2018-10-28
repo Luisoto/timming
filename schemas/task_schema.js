@@ -10,12 +10,12 @@ const TaskSchema = new Schema({
     last_paused: Date,
     last_resumed: Date,
     status: {type: String, default: "Running"},
-    duration: {type:Number, default: 0}
+    duration: {type:Number, default: 0},
+    formatted_duration: String
 });
 
 TaskSchema.pre('save', function(next) {
     const task = this;
-    //Stop last task if it is running (We will only allow one task running at time)
     console.log(task.isModified('status'));
     if (task.isModified('status') && task.status === "Paused" ) {
         const started_or_last_resumed = task.last_resumed || task.createdAt;
@@ -29,6 +29,24 @@ TaskSchema.pre('save', function(next) {
         task.finishedAt = new Date();
     }
     next();
+
+});
+
+
+TaskSchema.post('init', function(task) {
+    let duration = 0;
+    if (task.status === "Running"){
+        const started_or_last_resumed = task.last_resumed || task.createdAt;
+        duration = task.duration + (new Date() - started_or_last_resumed)/1000;
+    }
+    else{
+        duration = task.duration;
+    }
+
+    const hours = String(Math.floor(duration / 3600)).padStart(2, "0");
+    const minutes = String(Math.floor((duration % 3600) / 60)).padStart(2, "0");
+    const seconds = String(Math.round((duration % 3600) % 60)).padStart(2, "0");
+    task.formatted_duration = hours + ':' + minutes + ':' + seconds
 
 });
 

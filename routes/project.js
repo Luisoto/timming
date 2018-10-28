@@ -1,24 +1,57 @@
 let express = require('express');
 let router = express.Router();
-const mongoose = require('mongoose');
-const Joi = require('joi');
+let mongoose = require('mongoose');
 let Project = mongoose.model('Project');
 let Task = mongoose.model('Task');
 
+let _ = require('lodash');
+let Joi = require('joi');
+
 //Endpoint to list all project per user
 router.get('/', function(req, res, next) {
-    Project.find({
-        api_id: req.query.api_id,
-    }).sort({'createdAt': -1}).exec(function (err, tasks) {
+
+    Project.aggregate([
+        {
+            $match: {
+                api_id: req.query.api_id
+            },
+        },
+        {
+            $lookup: {
+                from: "Task",
+                localField: "tasks",
+                foreignField: "_id",
+                as: "tasks"
+            }
+        }
+    ]).exec(function (err, projects){
         if (err) {
             res.status(500).json({ error: true, message: err });
         }
         else {
-            res.status(200).send(tasks);
+            _.forEach(projects, function (project) {
+                let duration = 0;
+                _.forEach(project.tasks, function (task) {
+                    if (task.status === "Running"){
+                        const started_or_last_resumed = task.last_resumed || task.createdAt;
+                        duration += task.duration + (new Date() - started_or_last_resumed)/1000;
+                    }
+                    else{
+                        duration += task.duration;
+                    }
+                });
+                const hours = String(Math.floor(duration / 3600)).padStart(2, "0");
+                const minutes = String(Math.floor((duration % 3600) / 60)).padStart(2, "0");
+                const seconds = String(Math.round((duration % 3600) % 60)).padStart(2, "0");
+                project.total_duration = duration;
+                project.formatted_duration = hours + ':' + minutes + ':' + seconds;
+            });
+
+            res.status(200).send(projects);
         }
     });
 });
-// Endpoint to create a project
+//Endpoint to create a project
 router.post('/', function(req, res, next) {
 
     const baseSchema = Joi.object().keys({
@@ -94,7 +127,7 @@ router.put('/', function (req, res, next) {
         });
     }
 });
-
+//Endpoint to delete a project
 router.delete('/', function (req, res, next) {
 
     const baseSchema = Joi.object().keys({
@@ -197,5 +230,6 @@ router.post('/add_task_to_project', function (req, res, next) {
         });
     }
 });
+
 
 module.exports = router;
