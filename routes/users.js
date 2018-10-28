@@ -10,7 +10,7 @@ let User = mongoose.model('_User');
 let Task = mongoose.model('Task');
 let Project = mongoose.model('Project');
 
-//Endpoint to login to Login
+//Endpoint to login
 router.get('/', function(req, res, next) {
 
     /*

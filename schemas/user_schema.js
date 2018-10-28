@@ -10,6 +10,7 @@ const bcrypt = require('bcrypt-nodejs');
 const UserSchema = new Schema({
     email: {type: String, unique: true},
     password:String,
+    is_admin: Boolean,
     api_id: {type: String, default: uuidv1()},
     createdAt: {type: Date, default: Date.now},
     updatedAt: {type: Date, default: Date.now}

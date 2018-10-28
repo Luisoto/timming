@@ -12,7 +12,7 @@ let Task = mongoose.model('Task');
 let Project = mongoose.model('Project');
 let _ = require('lodash');
 
-//Function to finish a task, is called when user start another task
+//Function to finish a task, It's called when user start another task
 function finish_task (task){
     return new Promise(function (resolve, reject) {
         //Save duration only is task is running
@@ -46,12 +46,8 @@ router.get('/', function(req, res, next) {
     Task.find({
         api_id: req.query.api_id,
     }).sort({'createdAt': -1}).exec(function (err, tasks) {
-        if (err) {
-            res.status(500).json({ error: true, message: err });
-        }
-        else {
-            res.status(200).send(tasks);
-        }
+        if (err) res.status(500).json({ error: true, message: err });
+        else res.status(200).send(tasks);
     });
 });
 //Endpoint to create a task (manually or from applications)
