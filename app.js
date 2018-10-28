@@ -52,7 +52,7 @@ const auth_user = function(req, res, next) {
             else {
                 if (user != null){
                     //Only admins can access to /admin
-                    if (req.baseUrl === "/admin" && user.is_admin === false){
+                    if (req.baseUrl === "/admin" && user.is_admin !== true){
                         res.status(401).json({
                             error:true,
                             message: "You don't have enough permissions to execute this action"

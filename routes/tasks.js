@@ -2,8 +2,6 @@
  * Created by Luis Soto on 27/10/18.
  */
 
-
-
 let express = require('express');
 let router = express.Router();
 const mongoose = require('mongoose');
@@ -11,6 +9,7 @@ const Joi = require('joi');
 let Task = mongoose.model('Task');
 let Project = mongoose.model('Project');
 let _ = require('lodash');
+let general_functions = require("../general_functions");
 
 //Function to finish a task, It's called when user start another task
 function finish_task (task){
@@ -45,9 +44,16 @@ router.get('/', function(req, res, next) {
     */
     Task.find({
         api_id: req.query.api_id,
-    }).sort({'createdAt': -1}).exec(function (err, tasks) {
+    }).lean().sort({'createdAt': -1}).exec(function (err, tasks) {
         if (err) res.status(500).json({ error: true, message: err });
-        else res.status(200).send(tasks);
+        else {
+            _.forEach(tasks, function (task) {
+                const duration = general_functions.formatted_duration_from_tasks([task]);
+                task.duration = duration.duration;
+                task.formatted_duration = duration.formatted;
+            });
+            res.status(200).send(tasks);
+        }
     });
 });
 //Endpoint to create a task (manually or from applications)

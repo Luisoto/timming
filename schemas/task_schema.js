@@ -40,22 +40,4 @@ TaskSchema.pre('save', function(next) {
 });
 
 
-TaskSchema.post('init', function(task) {
-    let duration = 0;
-    if (task.status === "Running"){
-        const started_or_last_resumed = task.last_resumed || task.createdAt;
-        duration = task.duration + (new Date() - started_or_last_resumed)/1000;
-    }
-    else{
-        duration = task.duration;
-    }
-
-    const hours = String(Math.floor(duration / 3600)).padStart(2, "0");
-    const minutes = String(Math.floor((duration % 3600) / 60)).padStart(2, "0");
-    const seconds = String(Math.round((duration % 3600) % 60)).padStart(2, "0");
-    task.formatted_duration = hours + ':' + minutes + ':' + seconds
-
-});
-
-
 mongoose.model('Task', TaskSchema, "Task");

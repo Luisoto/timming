@@ -170,6 +170,15 @@ describe('Unit test',()=>{
             });
     });
 
+    it('List users from admin', (done) => {
+        chai.request(url)
+            .get('/admin?api_id=fbe04a90-d9f7-11e8-b610-2d17ef64d214')
+            .end( function(err,res){
+                expect(res).to.have.status(200);
+                done();
+            });
+    });
+
     it('Delete user', (done) => {
         chai.request(url)
             .delete('/users')

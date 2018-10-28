@@ -10,6 +10,7 @@ let Task = mongoose.model('Task');
 
 let _ = require('lodash');
 let Joi = require('joi');
+let general_functions = require("../general_functions");
 
 //Endpoint to list all project per user
 router.get('/', function(req, res, next) {
@@ -32,19 +33,9 @@ router.get('/', function(req, res, next) {
         if (err) res.status(500).json({ error: true, message: err });
         else {
             _.forEach(projects, function (project) {
-                let duration = 0;
-                _.forEach(project.tasks, function (task) {
-                    if (task.status === "Running"){
-                        const started_or_last_resumed = task.last_resumed || task.createdAt;
-                        duration += task.duration + (new Date() - started_or_last_resumed)/1000;
-                    }
-                    else duration += task.duration;
-                });
-                const hours = String(Math.floor(duration / 3600)).padStart(2, "0");
-                const minutes = String(Math.floor((duration % 3600) / 60)).padStart(2, "0");
-                const seconds = String(Math.round((duration % 3600) % 60)).padStart(2, "0");
-                project.total_duration = duration;
-                project.formatted_duration = hours + ':' + minutes + ':' + seconds;
+                const duration = general_functions.formatted_duration_from_tasks(project.tasks);
+                project.total_duration = duration.duration;
+                project.formatted_duration = duration.formatted;
             });
 
             res.status(200).send(projects);
