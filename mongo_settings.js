@@ -9,4 +9,4 @@ const task_schema = require("./schemas/task_schema");
 const project_schema = require("./schemas/project_schema");
 mongoose.Promise = require('bluebird');
 
-mongoose.connect(process.env.mongo_url);
+mongoose.connect(process.env.mongo_url); //Remember pass "mongo_url" in environment variables

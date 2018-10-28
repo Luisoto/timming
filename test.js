@@ -3,8 +3,8 @@ let chaiHttp = require('chai-http');
 const expect = require('chai').expect;
 
 chai.use(chaiHttp);
-const url= '0.0.0.0:8000';
-//const url= 'qrvey.aquehorajuega.co:8000';
+//const url= '0.0.0.0:8000';
+const url= 'qrvey.aquehorajuega.co:8000';
 
 
 

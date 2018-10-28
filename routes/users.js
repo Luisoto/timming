@@ -52,6 +52,17 @@ router.get('/', function(req, res, next) {
 });
 //Endpoint to create user
 router.post('/', function(req, res, next) {
+    /*
+    curl -X POST \
+      http://qrvey.aquehorajuega.co:8000/users \
+      -H 'Cache-Control: no-cache' \
+      -H 'Content-Type: application/json' \
+      -d '{
+        "email":"qrvey1@gmail.com",
+        "password": "123456789"
+    }'
+
+     */
     //Schema to validate req.body
     const baseSchema = Joi.object().keys({
         email: Joi.string().email().required(),
@@ -82,6 +93,17 @@ router.post('/', function(req, res, next) {
 });
 //Endpoint to delete user and all user's task and user's projects by api_id
 router.delete('/', function(req, res, next) {
+
+    /*
+    curl -X DELETE \
+      http://qrvey.aquehorajuega.co:8000/users \
+      -H 'Cache-Control: no-cache' \
+      -H 'Content-Type: application/json' \
+      -d '{
+        "api_id":"9c5ac440-dada-11e8-9278-3169716dc075"
+    }'
+     */
+
     User.deleteOne({
         api_id:req.user.api_id,
     }).exec(function (err, result) {

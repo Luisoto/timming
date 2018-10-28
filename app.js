@@ -51,7 +51,7 @@ const auth_user = function(req, res, next) {
             if (err) res.status(500).json({ error: true, message: err });
             else {
                 if (user != null){
-                    //Only admins can access to /admin
+                    //Only users with _is_admin == true can access to /admin
                     if (req.baseUrl === "/admin" && user.is_admin !== true){
                         res.status(401).json({
                             error:true,

@@ -272,7 +272,7 @@ router.delete('/', function (req, res, next) {
             $pull:{
                 tasks: mongoose.Types.ObjectId(req.body._id)
             }
-        },{ multi: true }, function (err, projects) {
+        },{ multi: true}, function (err, projects) {
             if (err) res.status(500).json({ error: true, message: err });
             else {
                 //Now that task is removed from all project we can delete that object
